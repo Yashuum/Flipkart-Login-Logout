@@ -1,0 +1,56 @@
+import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import internal.GlobalVariable as GlobalVariable
+
+// Open the browser and navigate to Flipkart
+WebUI.openBrowser('')
+
+// Maximize the browser window
+DriverFactory.getWebDriver().manage().window().maximize()
+
+// Navigate to Flipkart login page
+WebUI.navigateToUrl('https://www.flipkart.com')
+
+// Wait for the login page to load
+WebUI.waitForPageLoad(10)
+
+// Click on the "Login" link
+WebUI.click(findTestObject('Page_Flipkart/a_Login'))
+
+// Wait for the login form to load
+WebUI.waitForElementVisible(findTestObject('Page_Flipkart/input_Email'))
+
+// Enter the username
+WebUI.setText(findTestObject('Page_Flipkart/input_Email'), 'test@yashmail.com')
+
+// Enter the password
+WebUI.setText(findTestObject('Page_Flipkart/input_Password'), 'pass#123')
+
+// Click on the "Login" button
+WebUI.click(findTestObject('Page_Flipkart/button_Login'))
+
+// Wait for the user to be logged in
+WebUI.waitForElementVisible(findTestObject('Page_Flipkart/div_Logged In User'), 10)
+
+// Verify that the user is logged in successfully
+WebUI.verifyElementVisible(findTestObject('Page_Flipkart/div_Logged In User'))
+
+// Add a wait of 8 seconds
+WebUI.delay(8000)
+
+// Perform any additional actions after login (e.g., navigate to a specific page)
+
+// Click on the user dropdown menu
+WebUI.click(findTestObject('Page_Flipkart/div_Logged In User'))
+
+// Click on the "Logout" button
+WebUI.click(findTestObject('Page_Flipkart/a_Logout'))
+
+// Wait for the user to be logged out
+WebUI.waitForElementVisible(findTestObject('Page_Flipkart/a_Login'), 10)
+
+// Verify that the user is logged out successfully
+WebUI.verifyElementVisible(findTestObject('Page_Flipkart/a_Login'))
+
+// Close the browser
+WebUI.closeBrowser()
